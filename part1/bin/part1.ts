@@ -1,10 +1,10 @@
 #!/usr/bin/env node
-
-const cdk = require('aws-cdk-lib');
-const { DataCdkStack } = require('../lib/data-cdk-stack');
+import 'source-map-support/register';
+import * as cdk from 'aws-cdk-lib';
+import { Part1Stack } from '../lib/part1-stack';
 
 const app = new cdk.App();
-new DataCdkStack(app, 'DataCdkStack', {
+new Part1Stack(app, 'Part1Stack', {
   /* If you don't specify 'env', this stack will be environment-agnostic.
    * Account/Region-dependent features and context lookups will not work,
    * but a single synthesized template can be deployed anywhere. */
