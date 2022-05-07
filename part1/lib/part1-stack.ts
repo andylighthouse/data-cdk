@@ -12,7 +12,9 @@ export class FirehoseToS3 extends Stack {
     super(scope, id, props);
 
     // Create a S3 bucket
-    const bucket = new s3.Bucket(this, "MYRAWBUCKET");
+    const bucket = new s3.Bucket(this, "MYRAWBUCKET", {
+      bucketName: "dongguangkevinsbucket",
+    });
 
     // Create IAM role for firehose to access S3
     const firehoseRole = new Role(this, "FIREHOSEACCESSS3", {
@@ -21,7 +23,7 @@ export class FirehoseToS3 extends Stack {
 
     firehoseRole.addToPolicy(
       new PolicyStatement({
-        resources: [bucket.bucketArn],
+        resources: [bucket.bucketArn, bucket.arnForObjects("*")],
         actions: ["s3:PutObject"],
       })
     );
@@ -30,11 +32,12 @@ export class FirehoseToS3 extends Stack {
       this,
       "FirehoseToS3",
       {
+        deliveryStreamName: "testData",
         s3DestinationConfiguration: {
           bucketArn: bucket.bucketArn,
           roleArn: firehoseRole.roleArn,
           bufferingHints: {
-            intervalInSeconds: 900,
+            intervalInSeconds: 60,
             sizeInMBs: 128,
           },
           compressionFormat: "GZIP",
