@@ -32,7 +32,7 @@ export class FirehoseToS3 extends Stack {
       {
         s3DestinationConfiguration: {
           bucketArn: bucket.bucketArn,
-          roleArn: "sdff",
+          roleArn: firehoseRole.roleArn,
           bufferingHints: {
             intervalInSeconds: 900,
             sizeInMBs: 128,
