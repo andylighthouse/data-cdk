@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 import * as cdk from "aws-cdk-lib";
 import "source-map-support/register";
-import { FirehoseToS3 } from "../lib/part1-stack";
+import { FirehoseToS3 } from "../lib/firehose-s3";
 
 const app = new cdk.App();
-new FirehoseToS3(app, "Part1Stack", {
+new FirehoseToS3(app, "FirehoseToS3Stack", {
   /* If you don't specify 'env', this stack will be environment-agnostic.
    * Account/Region-dependent features and context lookups will not work,
    * but a single synthesized template can be deployed anywhere. */

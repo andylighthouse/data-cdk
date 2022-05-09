@@ -1,8 +1,8 @@
 {
-  "name": "part1",
+  "name": "firehose-s3",
   "version": "0.1.0",
   "bin": {
-    "part1": "bin/part1.js"
+    "firehose-s3": "bin/firhose-s3.js"
   },
   "scripts": {
     "build": "tsc",
