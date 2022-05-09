@@ -1,26 +1,23 @@
-import { FirehoseClient, PutRecordCommand } from "@aws-sdk/client-firehose";
+import { FirehoseClient, PutRecordCommand } from '@aws-sdk/client-firehose'
 
-const client = new FirehoseClient({ region: "us-west-2" });
+const client = new FirehoseClient({ region: 'us-west-2' })
 
 const command = new PutRecordCommand({
-  DeliveryStreamName: "testData",
+  DeliveryStreamName: 'TestData',
   Record: {
-    Data: Buffer.from(
-      JSON.stringify({ name: `randomName`, email: `randomEmail` }) + "\n"
-    ),
+    Data: Buffer.from(JSON.stringify({ name: `randomName`, email: `randomEmail` }) + '\n'),
   },
-});
+})
 
 const sentToFirehose = async () => {
   try {
-    const kevin = await client.send(command);
-    console.log("sent");
-    console.log(kevin);
-    return true;
+    await client.send(command)
+    console.log('sent')
+    return true
   } catch (e) {
-    console.log("error");
-    return false;
+    console.log('error')
+    return false
   }
-};
+}
 
-sentToFirehose();
+sentToFirehose()
