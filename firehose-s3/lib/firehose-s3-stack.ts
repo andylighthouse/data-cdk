@@ -8,7 +8,7 @@ export class FirehoseToS3 extends Stack {
 
     // Create a S3 bucket
     const bucket = new s3.Bucket(this, 'MyRawBucket', {
-      bucketName: 'myrawbucketforfirehose',
+      bucketName: 'myrawbucketforfirehosewithuniquename20220509',
     })
 
     // Create IAM role for firehose to access S3
@@ -27,7 +27,7 @@ export class FirehoseToS3 extends Stack {
     bucket.grantWrite(firehoseRole)
 
     const firehose = new kinesisfirehose.CfnDeliveryStream(this, 'FirehoseToS3', {
-      deliveryStreamName: 'testData',
+      deliveryStreamName: 'TestData',
       s3DestinationConfiguration: {
         bucketArn: bucket.bucketArn,
         roleArn: firehoseRole.roleArn,
