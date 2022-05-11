@@ -16,6 +16,7 @@ export class FirehoseToS3 extends Stack {
       assumedBy: new ServicePrincipal('firehose.amazonaws.com'),
     })
 
+    // We can add policy to firehose
     // firehoseRole.addToPolicy(
     //   new PolicyStatement({
     //     resources: [bucket.bucketArn, bucket.arnForObjects('*')],
