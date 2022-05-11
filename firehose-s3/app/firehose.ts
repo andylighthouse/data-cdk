@@ -16,6 +16,7 @@ const sentToFirehose = async () => {
     return true
   } catch (e) {
     console.log('error')
+    console.log(e)
     return false
   }
 }
